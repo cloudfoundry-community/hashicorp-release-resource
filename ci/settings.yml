@@ -112,47 +112,37 @@ jobs:
 
                 bash --version | head --lines=1
 
-                failure="false"
+                FAILURE="false"
+
+
+                function check_version() {
+                    local project=$1
+
+                    local latest_version_json  latest_version
+                    latest_version_json=$(
+                        jq --null-input \
+                                --arg "project" "${project}" \
+                                '{ "source": { "project": $project } }' \
+                            | /opt/resource/check
+                    )
+                    latest_version=$(jq --raw-output '.[0].version' <<< "${latest_version_json}")
+
+                    if [[ -n "${latest_version}" ]]; then
+                        echo >&2 "OK: ${project} latest version: '${latest_version}'"
+                    else
+                        echo >&2 "FAIL: expected ${project} version not to be empty, but got '${latest_version}'."
+                        FAILURE="true"
+                    fi
+                }
+
+
+                check_version "consul"
+                check_version "terraform"
+                check_version "vault"
 
 
 
-                project="vault"
-                latest_version_json=$(
-                    jq --null-input \
-                            --arg "project" "${project}" \
-                            '{ "source": { "project": $project } }' \
-                        | /opt/resource/check
-                )
-                latest_version=$(jq --raw-output '.[0].version' <<< "${latest_version_json}")
-
-                if [[ -n "${latest_version}" ]]; then
-                    echo >&2 "OK: ${project} latest version: '${latest_version}'"
-                else
-                    echo >&2 "FAIL: expected ${project} version not to be empty, but got '${latest_version}'."
-                    failure="true"
-                fi
-
-
-
-                project="terraform"
-                latest_version_json=$(
-                    jq --null-input \
-                            --arg "project" "${project}" \
-                            '{ "source": { "project": $project } }' \
-                        | /opt/resource/check
-                )
-                latest_version=$(jq --raw-output '.[0].version' <<< "${latest_version_json}")
-
-                if [[ -n "${latest_version}" ]]; then
-                    echo >&2 "OK: ${project} latest version: '${latest_version}'"
-                else
-                    echo >&2 "FAIL: expected ${project} version not to be empty, but got '${latest_version}'."
-                    failure="true"
-                fi
-
-
-
-                if [[ ${failure} == true ]]; then
+                if [[ ${FAILURE} == true ]]; then
                     exit 1
                 fi
                 exit 0
