@@ -114,7 +114,43 @@ jobs:
 
                 failure="false"
 
-                : # TODO
+
+
+                project="vault"
+                latest_version_json=$(
+                    jq --null-input \
+                            --arg "project" "${project}" \
+                            '{ "source": { "project": $project } }' \
+                        | /opt/resource/check
+                )
+                latest_version=$(jq --raw-output '.[0].version' <<< "${latest_version_json}")
+
+                if [[ -n "${latest_version}" ]]; then
+                    echo >&2 "OK: ${project} latest version: '${latest_version}'"
+                else
+                    echo >&2 "FAIL: expected ${project} version not to be empty, but got '${latest_version}'."
+                    failure="true"
+                fi
+
+
+
+                project="terraform"
+                latest_version_json=$(
+                    jq --null-input \
+                            --arg "project" "${project}" \
+                            '{ "source": { "project": $project } }' \
+                        | /opt/resource/check
+                )
+                latest_version=$(jq --raw-output '.[0].version' <<< "${latest_version_json}")
+
+                if [[ -n "${latest_version}" ]]; then
+                    echo >&2 "OK: ${project} latest version: '${latest_version}'"
+                else
+                    echo >&2 "FAIL: expected ${project} version not to be empty, but got '${latest_version}'."
+                    failure="true"
+                fi
+
+
 
                 if [[ ${failure} == true ]]; then
                     exit 1
