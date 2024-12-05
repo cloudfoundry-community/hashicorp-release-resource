@@ -61,10 +61,26 @@ If you want to upload a new Hashicorp version, perhaps visit https://www.hashico
 
 ## Build docker image
 
-```
+```shell
 docker_user=starkandwayne
 docker build -t $docker_user/hashicorp-release-resource .
 docker push $docker_user/hashicorp-release-resource
 ```
 
 <!-- END_OF_DOCKERHUB_STRIP -->
+
+
+
+## Authors and license
+
+Copyright © 2017, Dr Nic Williams<br/>
+Copyright © 2024-present, Benjamin Gandon, Gstack
+
+The hashicorp-release resource is released under the terms of the
+[MIT License](./LICENSE).
+
+<!--
+# Local Variables:
+# indent-tabs-mode: nil
+# End:
+-->
