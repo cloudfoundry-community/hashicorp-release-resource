@@ -56,6 +56,9 @@ Also creates files:
 
 If you want to upload a new Hashicorp version, perhaps visit https://www.hashicorp.com/jobs/
 
+
+<!-- START_OF_DOCKERHUB_STRIP -->
+
 ## Build docker image
 
 ```
@@ -63,3 +66,5 @@ docker_user=starkandwayne
 docker build -t $docker_user/hashicorp-release-resource .
 docker push $docker_user/hashicorp-release-resource
 ```
+
+<!-- END_OF_DOCKERHUB_STRIP -->
