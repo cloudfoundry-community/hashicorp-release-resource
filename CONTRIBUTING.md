@@ -2,9 +2,9 @@
 
 ## **Did you find a bug?**
 
-* **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/starkandwayne/hashicorp-release-resource/issues).
+* **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/cloudfoundry-community/hashicorp-release-resource/issues).
 
-* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/starkandwayne/hashicorp-release-resource/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
+* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/cloudfoundry-community/hashicorp-release-resource/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
 
 ## **Did you write a patch that fixes a bug?**
 
@@ -16,6 +16,6 @@
 
 ## **Do you intend to add a new feature or change an existing one?**
 
-* Please open a [open a new issue](https://github.com/starkandwayne/hashicorp-release-resource/issues/new) describing the feature you'd like to add.
+* Please open a [open a new issue](https://github.com/cloudfoundry-community/hashicorp-release-resource/issues/new) describing the feature you'd like to add.
 
 Thanks!

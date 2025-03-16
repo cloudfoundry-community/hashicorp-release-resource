@@ -13,7 +13,7 @@ resource_types:
 - name: hashicorp-release
   type: docker-image
   source:
-    repository: starkandwayne/hashicorp-release-resource
+    repository: cfcommunity/hashicorp-release-resource
 
 resources:
   - name: vault
